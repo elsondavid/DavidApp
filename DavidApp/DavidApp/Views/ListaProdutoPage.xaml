@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Produtos"
+             x:Class="DavidApp.Views.ListaProdutoPage">
+
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Produtos}" Margin="5,5,5,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5" Orientation="Horizontal" BackgroundColor="#00ff00">
+                        <Label Text="{Binding Nome}" TextColor="White" />
+                        <Label Text="{Binding Quantidade}" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Novo Produto" Command="{Binding NavegarParaCadastroCommand}" BackgroundColor="#00ff00"/>
+    </StackLayout>
+</ContentPage>

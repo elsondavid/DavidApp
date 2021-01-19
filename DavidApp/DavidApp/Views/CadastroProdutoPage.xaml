@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="DavidApp.Views.CadastroProdutoPage"
+             Title="{Binding Title}">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" >
+        <Label Text="{Binding Mensagem}" />
+
+        <Entry Placeholder="Produto" Text="{Binding Nome}"/>
+        <Entry Placeholder="Quantidade" Text="{Binding Quantidade }"/>
+        <Button Text="Salvar" Command="{Binding SaveCommand}" />
+
+    </StackLayout>
+</ContentPage>
