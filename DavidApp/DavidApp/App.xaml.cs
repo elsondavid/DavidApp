@@ -6,6 +6,8 @@ using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using davidapp.data;
+using Refit;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DavidApp
@@ -31,6 +33,7 @@ namespace DavidApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+            containerRegistry.RegisterInstance(RestService.For<IApi>("http://192.168.0.8:5000"));
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();

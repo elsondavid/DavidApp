@@ -5,17 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Prism.Navigation;
 using DavidApp.Models;
-using DavidApp.Data;
+using davidapp.data;
 
 namespace DavidApp.ViewModels
 {
     public class CadastroProdutoPageViewModel : ViewModelBase, IInitialize
     {
         private DelegateCommand _saveCommand;
+        private readonly IApi _api;
 
-        public CadastroProdutoPageViewModel(INavigationService navigationService) :base(navigationService)
+        public CadastroProdutoPageViewModel(INavigationService navigationService, IApi api) : base(navigationService)
         {
             _saveCommand = new DelegateCommand(OnSave);
+            _api = api;
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -37,6 +39,8 @@ namespace DavidApp.ViewModels
         }
 
         private int quantidade;
+
+
         public int Quantidade
         {
             get { return quantidade; }
@@ -45,7 +49,7 @@ namespace DavidApp.ViewModels
 
         // => get
         public DelegateCommand SaveCommand => _saveCommand;
-      
+
         private async void OnSave()
         {
             var produto = new Produto();
@@ -53,10 +57,19 @@ namespace DavidApp.ViewModels
             produto.Nome = Nome;
             produto.Quantidade = Quantidade;
             produto.Descricao = Descricao;
-           
-            Database.Produtos.Add(produto); ///Produto foi salvo em memória.
 
-           await NavigationService.GoBackAsync();
+            try
+            {
+                await _api.Save(produto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //Database.Produtos.Add(produto); ///Produto foi salvo em memória.
+
+            await NavigationService.GoBackAsync();
         }
     }
 }

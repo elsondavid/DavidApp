@@ -1,5 +1,4 @@
-﻿using DavidApp.Data;
-using DavidApp.Models;
+﻿using DavidApp.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -33,12 +32,12 @@ namespace DavidApp.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             Produtos.Clear();
-            var produtosDb = Database.Produtos;
+            //var produtosDb = Database.Produtos;
 
-            foreach (var item in produtosDb)
-            {
-                Produtos.Add(item);
-            }
+            //foreach (var item in produtosDb)
+            //{
+            //    Produtos.Add(item);
+            //}
         }
 
         private async void NavegarParaCadastro()
